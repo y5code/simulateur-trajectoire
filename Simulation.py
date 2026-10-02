@@ -1,5 +1,5 @@
 import numpy as np
-
+import matplotlib.pyplot as plt
 # 1 Paramètres physiques
 
 g= 9.81  #Pesanteur ,m/s^2
@@ -15,7 +15,7 @@ dt= 0.005 #Pas de temps très fin pour Euler , s
 
 # 2 Fonction de résolution en direct , méthode d'Euler
 
-def calcul-trajectoire(avec_frottement=True):
+def calculer-trajectoire(avec_frottement=True):
     x, y = [0.0], [0.0]
     vx = [V0 *np.cos(np.radians(alpha))]
     vy = [V0 * np.sin(np.radians(alpha))]
@@ -50,6 +50,19 @@ print(f"Portée théorique dans le vide : {porte_vide: .2f} mètres. ")
 print(f"Portée réelle avec frottement dans l'air : {porte_air: .2f} mètres. ")
 print(f"Perte de distance due à l'air : {porte_vide - porte_air: .2f} mètres. ")
 
+x_vide, y_vide = calculer_trajectoire(avec_frottement=False)
+x_air, y_air = calculer_trajectoire(avec_frottement=True)
 
+plt.figure(figsize=(10, 5))
+plt.plot(x_vide, y_vide , '--r' , label = "Trajectoire théorique (Vide/ Parabole)")
+plt.plot(x_air, y_air  , '-b' , label = "Trajectoire réelle (avec frottement de l'air)")
+plt.title("Influence de la résistance de l'air sur un projectile ")
+plt.xlabel("Distance Horizontale  x en mètres ")
+plt.ylabel("Altitude y en mètres")
+plt.grid(True)
+plt.show()
 
+# Sauvegarde du TP
 
+plt.savefig("trajectoire_ballistique.png")
+print(" Graphique généré (Trajectoire_ballistique)")
