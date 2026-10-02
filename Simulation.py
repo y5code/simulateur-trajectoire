@@ -23,21 +23,21 @@ def calculer_trajectoire(avec_frottement=True):
 # Constante de frottement k= 0.5 * rho * Cd * A
 k= 0.5 * rho * Cd * A if avec_frottement else 0.0
 
-while y[-1] >=0 :
-    # vitesse instantanné v
-    v= np.sqrt(vx[-1]**2 + vy[-1]**2)
+    while y[-1] >=0 :
+        # vitesse instantanné v
+        v= np.sqrt(vx[-1]**2 + vy[-1]**2)
+    
+        # Calcul des accéleration, PFD
+        ax = - (k/m) * v * vx[-1]
+        ay = -g - (k/m) * v *vy[-1]
+    
+        # Equations de la méthode d'euler
+        x.append(x[-1] + vx[-1] *dt )
+        y.append( y[-1] + vy[-1] *dt)
+        vx.append( vx[-1] + ax * dt)
+        vy.append(vy[-1] + ay*dt)
 
-    # Calcul des accéleration, PFD
-    ax = - (k/m) * v * vx[-1]
-    ay = -g - (k/m) * v *vy[-1]
-
-    # Equations de la méthode d'euler
-    x.append(x[-1] + vx[-1] *dt )
-    y.append( y[-1] + vy[-1] *dt)
-    vx.append( vx[-1] + ax * dt)
-    vy.append(vy[-1] + ay*dt)
-
-return x[-1]  #rETOURNE LA PORTEE MAXIMALE 
+    return x[-1]  #rETOURNE LA PORTEE MAXIMALE 
 
 # 3 Comparaison physique
 
