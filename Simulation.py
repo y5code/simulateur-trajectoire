@@ -9,13 +9,13 @@ A= np.pi * r**2  #Surface frontale ,m^2
 rho = 1.2 #Masse volumique de l'air ,kg/m^3
 Cd= 0.47  #Coefficient de trainée ,sphère 
 
-v0 =450. #Vitesse intiale ,m/s
+v0 =45.0 #Vitesse intiale ,m/s
 alpha = 45.0 #Angle de tir , degrés
 dt= 0.005 #Pas de temps très fin pour Euler , s
 
 # 2 Fonction de résolution en direct , méthode d'Euler
 
-def calculer-trajectoire(avec_frottement=True):
+def calculer_trajectoire(avec_frottement=True):
     x, y = [0.0], [0.0]
     vx = [V0 *np.cos(np.radians(alpha))]
     vy = [V0 * np.sin(np.radians(alpha))]
