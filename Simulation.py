@@ -19,9 +19,9 @@ def calculer_trajectoire(avec_frottement=True):
     x, y = [0.0], [0.0]
     vx = [V0 *np.cos(np.radians(alpha))]
     vy = [V0 * np.sin(np.radians(alpha))]
-
-# Constante de frottement k= 0.5 * rho * Cd * A
-k= 0.5 * rho * Cd * A if avec_frottement else 0.0
+    
+    # Constante de frottement k= 0.5 * rho * Cd * A
+    k= 0.5 * rho * Cd * A if avec_frottement else 0.0
 
     while y[-1] >=0 :
         # vitesse instantanné v
@@ -41,17 +41,14 @@ k= 0.5 * rho * Cd * A if avec_frottement else 0.0
 
 # 3 Comparaison physique
 
-porte_vide = calculer_trajectoire(avec_frottement=False)
-
-porte_air = calculer_trajectoire(avec_frottement=True)
+x_vide, y_vide = calculer_trajectoire(avec_frottement=False)
+x_air, y_air = calculer_trajectoire(avec_frottement=True)
 
 print("--- Résultats du TP DE PHYSIQUE ---")
 print(f"Portée théorique dans le vide : {porte_vide: .2f} mètres. ")
 print(f"Portée réelle avec frottement dans l'air : {porte_air: .2f} mètres. ")
 print(f"Perte de distance due à l'air : {porte_vide - porte_air: .2f} mètres. ")
 
-x_vide, y_vide = calculer_trajectoire(avec_frottement=False)
-x_air, y_air = calculer_trajectoire(avec_frottement=True)
 
 plt.figure(figsize=(10, 5))
 plt.plot(x_vide, y_vide , '--r' , label = "Trajectoire théorique (Vide/ Parabole)")
@@ -60,9 +57,11 @@ plt.title("Influence de la résistance de l'air sur un projectile ")
 plt.xlabel("Distance Horizontale  x en mètres ")
 plt.ylabel("Altitude y en mètres")
 plt.grid(True)
-plt.show()
 
 # Sauvegarde du TP
 
 plt.savefig("trajectoire_ballistique.png")
 print(" Graphique généré (Trajectoire_ballistique)")
+
+plt.show()
+
